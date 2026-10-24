@@ -1,7 +1,6 @@
 // 替换成你自己的认证 Worker 地址
 // 例如：const ADMIN_WORKER_URL = 'https://your-worker.your-account.workers.dev/api/admin';
-const ADMIN_WORKER_URL = 'https://three-days-backend.woshiluxiemijitui.workers.dev/api/admin';
-
+const ADMIN_WORKER_URL = 'https://three-days-web.pages.dev/api/admin';
 function jsonHeaders() {
   return {
     'Content-Type': 'application/json; charset=utf-8',
