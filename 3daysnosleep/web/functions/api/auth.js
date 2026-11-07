@@ -21,13 +21,12 @@ export async function onRequestOptions() {
 }
 
 export async function onRequestPost(context) {
- const AUTH_WORKER_URL = 'https://three-days-backend.woshiluxiemijitui.workers.dev/api/auth';
-  try {
+ const AUTH_WORKER_URL = 'https://fake-url.com/api/auth';
     const request = context.request;
     const body = await request.text();
 
     const upstream = await fetch(AUTH_WORKER_URL, {
-      method: 'POST',
+     const upstream = await context.env.BACKEND_SERVICE.fetch(AUTH_WORKER_URL, {
       headers: {
         'Content-Type': request.headers.get('Content-Type') || 'application/json'
       },
