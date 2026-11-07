@@ -1,6 +1,4 @@
 // 替换成你自己的认证 Worker 地址
-// 例如：const AUTH_WORKER_URL = 'https://your-worker.your-account.workers.dev/api/auth';
-
 function jsonHeaders() {
   return {
     'Content-Type': 'application/json; charset=utf-8',
@@ -21,17 +19,16 @@ export async function onRequestOptions() {
 }
 
 export async function onRequestPost(context) {
- const AUTH_WORKER_URL = 'https://three-days-backend.woshiluxiemijitui.workers.dev/api/auth';
+  // 这里用假地址占位即可，因为下面我们用的是内部通道调用
+  const AUTH_WORKER_URL = 'https://fake-url.com/api/auth';
+  
+  try {
     const request = context.request;
     const body = await request.text();
 
-     const upstream = await context.env.BACKEND_SERVICE.fetch(AUTH_WORKER_URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': request.headers.get('Content-Type') || 'application/json'
-    },
-    body: body
-  });
+    // 注意这里！用的是 BACKEND_SERVICE 内部通道
+    const upstream = await context.env.BACKEND_SERVICE.fetch(AUTH_WORKER_URL, {
+      method: 'POST',
       headers: {
         'Content-Type': request.headers.get('Content-Type') || 'application/json'
       },
@@ -59,7 +56,6 @@ export async function onRequestPost(context) {
 }
 
 export async function onRequestGet() {
- 
   return new Response(JSON.stringify({
     ok: false,
     error: '此接口只支持 POST 请求'
