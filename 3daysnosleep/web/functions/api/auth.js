@@ -19,14 +19,12 @@ export async function onRequestOptions() {
 }
 
 export async function onRequestPost(context) {
-  // 这里用假地址占位即可，因为下面我们用的是内部通道调用
   const AUTH_WORKER_URL = 'https://fake-url.com/api/auth';
   
   try {
     const request = context.request;
     const body = await request.text();
 
-    // 注意这里！用的是 BACKEND_SERVICE 内部通道
     const upstream = await context.env.BACKEND_SERVICE.fetch(AUTH_WORKER_URL, {
       method: 'POST',
       headers: {
