@@ -1,6 +1,6 @@
 // 替换成你自己的认证 Worker 地址
 // 例如：const ADMIN_WORKER_URL = 'https://your-worker.your-account.workers.dev/api/admin';
-const ADMIN_WORKER_URL = 'https://three-days-backend.woshiluxiemijitui.workers.dev/api/admin';
+
 function jsonHeaders() {
   return {
     'Content-Type': 'application/json; charset=utf-8',
@@ -21,6 +21,7 @@ export async function onRequestOptions() {
 }
 
 export async function onRequestPost(context) {
+  const ADMIN_WORKER_URL = context.env.WORKER_URL + '/api/admin';
   try {
     const request = context.request;
     const body = await request.text();
@@ -54,6 +55,7 @@ export async function onRequestPost(context) {
 }
 
 export async function onRequestGet() {
+  const ADMIN_WORKER_URL = context.env.WORKER_URL + '/api/admin';
   return new Response(JSON.stringify({
     ok: false,
     error: '此接口只支持 POST 请求'
