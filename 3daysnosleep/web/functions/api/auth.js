@@ -25,8 +25,13 @@ export async function onRequestPost(context) {
     const request = context.request;
     const body = await request.text();
 
-    const upstream = await fetch(AUTH_WORKER_URL, {
      const upstream = await context.env.BACKEND_SERVICE.fetch(AUTH_WORKER_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': request.headers.get('Content-Type') || 'application/json'
+    },
+    body: body
+  });
       headers: {
         'Content-Type': request.headers.get('Content-Type') || 'application/json'
       },
