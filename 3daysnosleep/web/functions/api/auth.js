@@ -21,7 +21,7 @@ export async function onRequestOptions() {
 }
 
 export async function onRequestPost(context) {
- const AUTH_WORKER_URL = 'https://fake-url.com/api/auth';
+ const AUTH_WORKER_URL = 'https://three-days-backend.woshiluxiemijitui.workers.dev/api/auth';
     const request = context.request;
     const body = await request.text();
 
