@@ -21,7 +21,7 @@ export async function onRequestOptions() {
 }
 
 export async function onRequestPost(context) {
-  const AUTH_WORKER_URL = context.env.WORKER_URL + '/api/auth';
+ const AUTH_WORKER_URL = 'https://three-days-backend.woshiluxiemijitui.workers.dev/api/auth';
   try {
     const request = context.request;
     const body = await request.text();
@@ -55,7 +55,7 @@ export async function onRequestPost(context) {
 }
 
 export async function onRequestGet() {
-  const AUTH_WORKER_URL = context.env.WORKER_URL + '/api/auth';
+ 
   return new Response(JSON.stringify({
     ok: false,
     error: '此接口只支持 POST 请求'
